@@ -113,6 +113,9 @@ def ScrapeUrls(page_to_scrape, to_skip):
             # Check if the href attribute is a relative URL
             if not img_url.startswith('http'):
                 # If it's a relative URL, join it with the base URL of the page
+                # but ensure it ends with a trailing slash
+                if not page_to_scrape.endswith("/"):
+                    page_to_scrape += "/"
                 img_url = urljoin(page_to_scrape, img_url)
 
             dot_pos = img_url.rfind('.')
